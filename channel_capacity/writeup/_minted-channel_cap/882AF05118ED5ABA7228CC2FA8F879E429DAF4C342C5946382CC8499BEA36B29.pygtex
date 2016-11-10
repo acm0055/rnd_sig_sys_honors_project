@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{function}\PYG{+w}{ }par \PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{parity}\PYG{p}{(}packet\PYG{p}{)}
+\PYG{+w}{  }\PYG{n}{num\PYGZus{}ones} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{packet}\PYG{p}{)(}\PYG{l+m+mi}{2}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{packet}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}
+      \PYG{n}{num\PYGZus{}ones} \PYG{p}{=} \PYG{n}{num\PYGZus{}ones} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{k}{end}
+  \PYG{k}{end}
+  \PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{mod}\PYG{p}{(}\PYG{n}{num\PYGZus{}ones}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
+    \PYG{n}{par} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{else}
+    \PYG{n}{par} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{k}{end}
+\PYG{k}{end}
+\end{Verbatim}

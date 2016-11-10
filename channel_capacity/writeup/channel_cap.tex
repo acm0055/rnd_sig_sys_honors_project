@@ -1,0 +1,99 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{minted}
+
+\author{Austin Minor}
+\title{Simulation Results of Channel Capacity using Parity Bits for Error Correction}
+\date{\today}
+
+\begin{document}
+   \maketitle
+
+   \section{Introduction}
+      Claude Shannon was a major figure in creating the
+      mathematical discipline of information theory. This
+      paper analyizes how emperical results line up with
+      the statements made by this mathematical model of
+      information. More formally, we will be analyizing
+      the effect of using parity bits for error correction
+      and how well they are at approaching the formal limit
+      on the conveyance of data.
+   \section{Mathematical Description}
+      The official description of converyable information
+      is the mutual information between to system of events.
+      Let $A$ be the source alphabet. Let $B$ be the reception
+      alphabet. Let $Q$ be the transmission matrix (IE the
+      probability of receiving $b_j \in B$ given a transmission
+      of $a_i \in A$. Let these entries be represented as $q_{i,j}$
+      respectively. For our example we will only consider the
+      simplier channel known as the binary symettric channel.
+      Thus \[ Q =
+      \begin{pmatrix}
+         q_{0,0} & q_{0,1} \\
+         q_{0,1} & q_{1,1}
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+         p & 1-p \\
+         1-p & p
+      \end{pmatrix}
+      \]
+      Given such a channel, the probability of bit errors
+      can be represented by a Bernoulli Trial.
+
+      The mutual information between two system of events (definition
+      given elsewhere) is defined as following:
+      \[
+         I(A,B) =
+         \sum_{i=1}^{m}
+         \sum_{j=1}^{n}
+         Pr(A_i \cup B_j) log(\frac{Pr(A_i \cup B_j)}{Pr(A_i)Pr(B_j)})
+         =
+         \sum_{i=1}^{m}
+         Pr(A_i)
+         \sum_{j=1}^{n}
+         q_{i,j}
+         log(\frac{q_{i,j}}{\sum_{t=1}^{m} Pr(A_t) q_{t,j}})
+      \]
+      It has been proved elsewhere that the maximal channel capacity
+      (maximum I(A,B) based on $Pr(A_i) $-- probability that a source letter
+      is transmitted) for a BSC is when $Pr(A_1=0)=Pr(A_2=1)=\frac{1}{2}$.
+      Furthermore, 
+      \[
+      I(A,B) = p*log(2*p) + (1-p)*log(2*(1-p))
+      \]
+      For example, if $p = .99$ then $I(A,B) = .919$.
+   \section{Problem Statement}
+      To test this model of channel capacity and mutual information,
+      a Matlab program was written that would satisfy the important
+      requirements listed above ($Pr(A_i) = \frac{1}{2}$, Q as described above).
+      The Matlab code is attached below.
+
+      \begin{listing}[H]
+         \inputminted[linenos]{matlab}{../main.m}
+         \caption{Main Simulator}
+      \end{listing}
+      \begin{listing}[H]
+         \inputminted[linenos]{matlab}{../transmit.m}
+         \caption{Transmission Simulator}
+      \end{listing}
+      \begin{listing}[H]
+         \inputminted[linenos]{matlab}{../transmit_msg.m}
+         \caption{Per-packet Transmission Simulator}
+      \end{listing}
+      \begin{listing}[H]
+         \inputminted[linenos]{matlab}{../insert_parity_bit.m}
+         \caption{Per-packet Parity Bit Inserter}
+      \end{listing}
+      \begin{listing}[H]
+         \inputminted[linenos]{matlab}{../parity.m}
+         \caption{Parity Bit Message Inserter}
+      \end{listing}
+      \begin{listing}[H]
+         \inputminted[linenos]{matlab}{../generate_random_msg.m}
+         \caption{Generator of Random Messages with Packets}
+      \end{listing}
+   \section{Results}
+   \section{Analysis}
+\end{document}
