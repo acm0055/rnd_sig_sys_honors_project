@@ -48,18 +48,21 @@
          I(A,B) =
          \sum_{i=1}^{m}
          \sum_{j=1}^{n}
-         Pr(A_i \cup B_j) log(\frac{Pr(A_i \cup B_j)}{Pr(A_i)Pr(B_j)})
-         =
+         Pr(A_i \cup B_j)
+         \log \left(\frac{Pr(A_i \cup B_j)}{Pr(A_i)Pr(B_j)}\right)
+      \]
+      \[
+         ... =
          \sum_{i=1}^{m}
          Pr(A_i)
          \sum_{j=1}^{n}
          q_{i,j}
-         log(\frac{q_{i,j}}{\sum_{t=1}^{m} Pr(A_t) q_{t,j}})
+         \log \left(\frac{q_{i,j}}{\sum_{t=1}^{m} Pr(A_t) q_{t,j}}\right)
       \]
       It has been proved elsewhere that the maximal channel capacity
-      (maximum I(A,B) based on $Pr(A_i) $-- probability that a source letter
+      (maximum I(A,B) based on $Pr(A_i)$ -- probability that a source letter
       is transmitted) for a BSC is when $Pr(A_1=0)=Pr(A_2=1)=\frac{1}{2}$.
-      Furthermore, 
+      Furthermore for these values, 
       \[
       I(A,B) = p*log(2*p) + (1-p)*log(2*(1-p))
       \]
@@ -68,32 +71,42 @@
       To test this model of channel capacity and mutual information,
       a Matlab program was written that would satisfy the important
       requirements listed above ($Pr(A_i) = \frac{1}{2}$, Q as described above).
+      The necessary error correction was implemented using parity bits.
       The Matlab code is attached below.
 
       \begin{listing}[H]
          \inputminted[linenos]{matlab}{../main.m}
          \caption{Main Simulator}
       \end{listing}
+      
       \begin{listing}[H]
          \inputminted[linenos]{matlab}{../transmit.m}
          \caption{Transmission Simulator}
       \end{listing}
+
       \begin{listing}[H]
          \inputminted[linenos]{matlab}{../transmit_msg.m}
          \caption{Per-packet Transmission Simulator}
       \end{listing}
+
       \begin{listing}[H]
          \inputminted[linenos]{matlab}{../insert_parity_bit.m}
          \caption{Per-packet Parity Bit Inserter}
       \end{listing}
+
       \begin{listing}[H]
          \inputminted[linenos]{matlab}{../parity.m}
          \caption{Parity Bit Message Inserter}
       \end{listing}
+
       \begin{listing}[H]
          \inputminted[linenos]{matlab}{../generate_random_msg.m}
          \caption{Generator of Random Messages with Packets}
       \end{listing}
    \section{Results}
+      Because the error correction was implemented using parity bits,
+      the maximum channel capacity possible is $\frac{4}{5}$. This is since
+      one new bit is added to each four bit transmission package thus lengthening
+      the transmitted message at a $\frac{4}{5}$ rate.
    \section{Analysis}
 \end{document}
