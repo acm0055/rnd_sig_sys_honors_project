@@ -1,5 +1,5 @@
-PRECISION = 1000;
-RETRY_COUNT = 100;
+PRECISION = 100;
+RETRY_COUNT = 10000;
 
 %first avg transmission
 %second error rate of transmission
@@ -29,15 +29,22 @@ end
 %compute channel cap graphics_toolkit
 %min bytes computed by testing for zero error
 min_bytes = transmit(generate_random_msg(10,4), 0, 20);
-A(3,:) = (ones(1,PRECISION)*min_bytes)./A(1,:);
+%remember to subtract parity bytes because not in orginal msg
+A(3,:) = (ones(1,PRECISION)*(min_bytes-10))./A(1,:);
 
 figure
 %bits of info needed for transmission
-subplot(3,1,1);
+a = subplot(3,1,1);
 plot(A(1,:))
+ylabel(a,'Number of Bits Needed for Transmission')
+xlabel(a,'Error Chance (1-Success Percentage)')
 %number of errors in transmission
-subplot(3,1,2);
+b = subplot(3,1,2);
 plot(A(2,:))
+ylabel(b,'Number of Errant Messages')
+xlabel(b,'Error Chance (1-Success Percentage)')
 %channel capacity
-subplot(3,1,3);
+c = subplot(3,1,3);
 plot(A(3,:))
+ylabel(c,'Channel Capacity')
+xlabel(c,'Error Chance (1-Success Percentage)')
