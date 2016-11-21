@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{function}\PYG{+w}{ }y \PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{partition}\PYG{p}{(}vector, num\PYGZus{}bins\PYG{p}{)}
+\PYG{+w}{  }\PYG{n}{y} \PYG{p}{=} \PYG{n+nb}{zeros}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{num\PYGZus{}bins}\PYG{p}{);}
+  
+  \PYG{k}{if} \PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{vector}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{vector}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}
+    \PYG{n}{sz} \PYG{p}{=} \PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{vector}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}
+  \PYG{k}{else}
+    \PYG{n}{sz} \PYG{p}{=} \PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{vector}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{);}
+  \PYG{k}{end}
+  
+  \PYG{n}{p\PYGZus{}sz} \PYG{p}{=} \PYG{n+nb}{ceil}\PYG{p}{(}\PYG{n}{sz}\PYG{o}{/}\PYG{n}{num\PYGZus{}bins}\PYG{p}{);}
+  \PYG{n}{r\PYGZus{}sz} \PYG{p}{=} \PYG{n}{p\PYGZus{}sz}\PYG{p}{;}
+  \PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{num\PYGZus{}bins}
+    \PYG{k}{for} \PYG{n+nb}{j} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{p\PYGZus{}sz}
+      \PYG{k}{if} \PYG{n+nb}{i}\PYG{o}{*}\PYG{n}{p\PYGZus{}sz} \PYG{o}{+} \PYG{n+nb}{j} \PYG{o}{\PYGZgt{}} \PYG{n}{sz}
+        \PYG{n}{r\PYGZus{}sz} \PYG{p}{=} \PYG{n}{sz} \PYG{o}{\PYGZhy{}} \PYG{n+nb}{i}\PYG{o}{*}\PYG{n}{p\PYGZus{}sz} \PYG{o}{+}\PYG{n+nb}{j}\PYG{p}{;}
+        \PYG{k}{break}\PYG{p}{;}
+      \PYG{k}{end}
+      \PYG{n}{y}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{p}{=} \PYG{n}{y}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{o}{+} \PYG{n}{vector}\PYG{p}{(}\PYG{n+nb}{i}\PYG{o}{*}\PYG{n}{p\PYGZus{}sz} \PYG{o}{+} \PYG{n+nb}{j}\PYG{p}{);}
+    \PYG{k}{end}
+  \PYG{k}{end}
+  
+  \PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{num\PYGZus{}bins}
+    \PYG{k}{if} \PYG{n+nb}{i} \PYG{o}{==} \PYG{n}{num\PYGZus{}bins}
+      \PYG{n}{y}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{p}{=} \PYG{n}{y}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{o}{/}\PYG{n}{r\PYGZus{}sz}\PYG{p}{;}
+    \PYG{k}{else}
+      \PYG{n}{y}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{p}{=} \PYG{n}{y}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{o}{/}\PYG{n}{p\PYGZus{}sz}\PYG{p}{;}
+    \PYG{k}{end}
+  \PYG{k}{end}
+\PYG{k}{end}
+\end{Verbatim}
