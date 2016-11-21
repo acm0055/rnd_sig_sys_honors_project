@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{function}\PYG{+w}{ }msg \PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{transmit\PYGZus{}msg}\PYG{p}{(}msg\PYGZus{}in, err\PYGZus{}prob\PYG{p}{)}
+\PYG{+w}{  }\PYG{n}{msg} \PYG{p}{=} \PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{msg\PYGZus{}in}\PYG{p}{));}
+  \PYG{n}{rnd\PYGZus{}num} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{msg\PYGZus{}in}\PYG{p}{)(}\PYG{l+m+mi}{2}\PYG{p}{)}
+    \PYG{n}{rnd\PYGZus{}num} \PYG{p}{=} \PYG{n+nb}{rand}\PYG{p}{();}
+    
+    \PYG{k}{if} \PYG{n}{rnd\PYGZus{}num} \PYG{o}{\PYGZlt{}} \PYG{n}{err\PYGZus{}prob}
+      \PYG{k}{if} \PYG{n}{msg\PYGZus{}in}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{0}
+        \PYG{n}{msg}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+      \PYG{k}{else}
+        \PYG{n}{msg}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+      \PYG{k}{end}
+    \PYG{k}{else}
+      \PYG{n}{msg}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{p}{=} \PYG{n}{msg\PYGZus{}in}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{);}
+    \PYG{k}{end}
+  \PYG{k}{end}
+\PYG{k}{end}
+\end{Verbatim}

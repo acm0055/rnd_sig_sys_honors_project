@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{function}\PYG{+w}{ }bit\PYGZus{}count \PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{transmit}\PYG{p}{(}msg, err\PYGZus{}prob, retry\PYGZus{}lim\PYG{p}{)}
+\PYG{+w}{  }\PYG{n}{msg} \PYG{p}{=} \PYG{n}{insert\PYGZus{}parity\PYGZus{}bit}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{);}
+  
+  \PYG{n}{num\PYGZus{}transmissions} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{n}{transmitted\PYGZus{}msg} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{)(}\PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{n}{transmitted\PYGZus{}msg} \PYG{p}{=} \PYG{n}{transmit\PYGZus{}msg}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,:),}\PYG{n}{err\PYGZus{}prob}\PYG{p}{);}
+    \PYG{c}{\PYGZpc{}check rough equality with parity bit}
+    \PYG{c}{\PYGZpc{}guarentees proper transmission for one or less errors}
+    \PYG{n}{temp\PYGZus{}c} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{while} \PYG{n}{transmitted\PYGZus{}msg}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} !\PYG{p}{=} \PYG{n}{parity}\PYG{p}{(}\PYG{n}{transmitted\PYGZus{}msg}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{:}\PYG{k}{end}\PYG{p}{))} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{temp\PYGZus{}c} \PYG{o}{\PYGZlt{}} \PYG{n}{retry\PYGZus{}lim}
+      \PYG{n}{num\PYGZus{}transmissions} \PYG{p}{=} \PYG{n}{num\PYGZus{}transmissions} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+      \PYG{n}{temp\PYGZus{}c} \PYG{p}{=} \PYG{n}{temp\PYGZus{}c} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+      \PYG{n}{transmitted\PYGZus{}msg} \PYG{p}{=} \PYG{n}{transmit\PYGZus{}msg}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,:),}\PYG{n}{err\PYGZus{}prob}\PYG{p}{);}
+    \PYG{k}{end}
+    \PYG{c}{\PYGZpc{}msg would fail using given parity scheme and error probality}
+    \PYG{k}{if} \PYG{n+nb}{isequal}\PYG{p}{(}\PYG{n}{transmitted\PYGZus{}msg}\PYG{p}{,} \PYG{n}{msg}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,:))} \PYG{o}{==} \PYG{n}{false}
+      \PYG{n}{bit\PYGZus{}count} \PYG{p}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+      \PYG{k}{return}
+    \PYG{k}{end}
+    \PYG{c}{\PYGZpc{}always one transmission}
+    \PYG{n}{num\PYGZus{}transmissions} \PYG{p}{=} \PYG{n}{num\PYGZus{}transmissions} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{k}{end}
+  
+  \PYG{c}{\PYGZpc{}num trans multiplied by the size of packet transmitted}
+  \PYG{n}{bit\PYGZus{}count} \PYG{p}{=} \PYG{n}{num\PYGZus{}transmissions} \PYG{o}{*} \PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{)(}\PYG{l+m+mi}{2}\PYG{p}{);}
+\PYG{k}{end}
+\end{Verbatim}

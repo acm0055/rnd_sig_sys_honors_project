@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{SPEED\PYGZus{}OF\PYGZus{}SOUND} \PYG{p}{=} \PYG{l+m+mf}{1125.33}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}for matlab and not octave use audioread}
+\PYG{n}{audio\PYGZus{}8} \PYG{p}{=} \PYG{n}{wavread}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}8ft.wav\PYGZsq{}}\PYG{p}{);}
+\PYG{n}{audio\PYGZus{}9} \PYG{p}{=} \PYG{n}{wavread}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}xft\PYGZus{}session.wav\PYGZsq{}}\PYG{p}{);}
+\PYG{c}{\PYGZpc{}reduce to one channel}
+\PYG{n}{audio\PYGZus{}8} \PYG{p}{=} \PYG{n}{audio\PYGZus{}8}\PYG{p}{(:,} \PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{n}{audio\PYGZus{}9} \PYG{p}{=} \PYG{n}{audio\PYGZus{}9}\PYG{p}{(:,} \PYG{l+m+mi}{1}\PYG{p}{);}
+
+\PYG{p}{[}\PYG{n}{cor\PYGZus{}8}\PYG{p}{,}\PYG{n}{lags\PYGZus{}8}\PYG{p}{]} \PYG{p}{=} \PYG{n}{xcorr}\PYG{p}{(}\PYG{n}{audio\PYGZus{}8}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}biased\PYGZsq{}}\PYG{p}{);}
+\PYG{p}{[}\PYG{n}{cor\PYGZus{}9}\PYG{p}{,}\PYG{n}{lags\PYGZus{}9}\PYG{p}{]} \PYG{p}{=} \PYG{n}{xcorr}\PYG{p}{(}\PYG{n}{audio\PYGZus{}9}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}biased\PYGZsq{}}\PYG{p}{);}
+\PYG{n}{p\PYGZus{}lags\PYGZus{}8} \PYG{p}{=} \PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{lags\PYGZus{}8} \PYG{o}{\PYGZgt{}}\PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{n}{p\PYGZus{}lags\PYGZus{}9} \PYG{p}{=} \PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{lags\PYGZus{}9} \PYG{o}{\PYGZgt{}}\PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{);}
+
+\PYG{p}{[}\PYG{n}{l}\PYG{p}{,} \PYG{n}{li}\PYG{p}{]} \PYG{p}{=} \PYG{n}{max}\PYG{p}{(}\PYG{n}{partition}\PYG{p}{(}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{cor\PYGZus{}9}\PYG{p}{(}\PYG{n}{p\PYGZus{}lags\PYGZus{}8}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{))),} \PYG{l+m+mi}{100}\PYG{p}{));}
+\PYG{n}{li}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{)}
+
+\PYG{c}{\PYGZpc{}figure}
+\PYG{c}{\PYGZpc{}bar(1:1000, cor\PYGZus{}8(p\PYGZus{}lags\PYGZus{}8(1:1000)))}
+
+\PYG{c}{\PYGZpc{}figure}
+\PYG{c}{\PYGZpc{}bar(1:1000, cor\PYGZus{}9(p\PYGZus{}lags\PYGZus{}9(1:1000)))}
+
+\PYG{c}{\PYGZpc{}figure}
+\PYG{c}{\PYGZpc{}bar(1:50, partition(abs(cor\PYGZus{}9(p\PYGZus{}lags\PYGZus{}9(1:1000))),50))}
+\end{Verbatim}

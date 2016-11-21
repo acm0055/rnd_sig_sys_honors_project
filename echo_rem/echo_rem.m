@@ -3,6 +3,7 @@ function crted_audio = echo_rem(wav_path_in, delta_x_in)
 
   [audio, sample_rate] = wavread(wav_path_in);
   audio = audio(:, 1);
+  audio = audio(1:400);
   delta_t = delta_x_in / SPEED_OF_SOUND;
 
   %if sample period is greater than delta_x period ignore_function_time_stamp
@@ -18,9 +19,10 @@ function crted_audio = echo_rem(wav_path_in, delta_x_in)
   for i = [1:size(audio)(1) - delta_t_in_samples - sample_length]
     %disp(var(audio(i:delta_t_in_samples)));
     [cor,lags] = xcorr(audio(i:i + delta_t_in_samples + sample_length),'biased');
-    [~,index] = max(abs([cor(1:size(lags)(2)/2 - 1)' cor(1:size(lags)(2)/2 +1)']));
-    index = lags(index);
-    crted_audio(i) = audio(i) - cor(index)/var(audio(i:i+delta_t_in_samples+sample_length));
+    %[~,index] = max(abs(cor(ceil(1:(size(lags)(2)/2 + 1)))));
+    %index = lags(index)
+    cor = cor(find(lags>0));
+    crted_audio(i) = audio(i) - cor(150)/var(audio(i:i+delta_t_in_samples+sample_length));
   end
   pause;
 end
