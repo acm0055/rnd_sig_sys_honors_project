@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{function}\PYG{+w}{ }B \PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{randomize\PYGZus{}array}\PYG{p}{(}A\PYG{p}{)}
+\PYG{+w}{  }\PYG{n}{sz} \PYG{p}{=} \PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{A}\PYG{p}{);}
+  \PYG{n}{sz} \PYG{p}{=} \PYG{n}{sz}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{);}
+  \PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{sz}
+    \PYG{n}{r} \PYG{p}{=} \PYG{n+nb}{floor}\PYG{p}{(}\PYG{n}{sz} \PYG{o}{*} \PYG{n+nb}{rand}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{))} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{n}{temp} \PYG{p}{=} \PYG{n}{A}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{);}
+    \PYG{n}{A}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{p}{=} \PYG{n}{A}\PYG{p}{(}\PYG{n}{r}\PYG{p}{);}
+    \PYG{n}{A}\PYG{p}{(}\PYG{n}{r}\PYG{p}{)} \PYG{p}{=} \PYG{n}{temp}\PYG{p}{;}
+  \PYG{k}{end}
+  \PYG{n}{B} \PYG{p}{=} \PYG{n}{A}\PYG{p}{;}
+\PYG{k}{end}
+\end{Verbatim}

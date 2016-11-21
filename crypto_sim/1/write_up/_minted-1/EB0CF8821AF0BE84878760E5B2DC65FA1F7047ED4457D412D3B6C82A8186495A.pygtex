@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{function}\PYG{+w}{ }successes \PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{match}\PYG{p}{(}sz, k\PYG{p}{)}
+\PYG{+w}{  }\PYG{n}{A} \PYG{p}{=} \PYG{n}{B} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{sz}\PYG{p}{;}
+  \PYG{n}{A} \PYG{p}{=} \PYG{n}{randomize\PYGZus{}array}\PYG{p}{(}\PYG{n}{A}\PYG{p}{);}
+  \PYG{n}{count} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  
+  \PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{sz}
+    \PYG{k}{for} \PYG{n+nb}{j} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{k}
+      \PYG{k}{if} \PYG{n}{A}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)} \PYG{o}{==} \PYG{n}{B}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}
+        \PYG{n}{B}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)} \PYG{p}{=} \PYG{p}{[];}
+        \PYG{n}{count} \PYG{p}{=} \PYG{n}{count} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+        \PYG{k}{break}\PYG{p}{;}
+      \PYG{k}{end}
+    \PYG{k}{end}
+  \PYG{k}{end}
+  \PYG{n}{successes} \PYG{p}{=} \PYG{n}{count}\PYG{p}{;}
+\PYG{k}{end}
+\end{Verbatim}

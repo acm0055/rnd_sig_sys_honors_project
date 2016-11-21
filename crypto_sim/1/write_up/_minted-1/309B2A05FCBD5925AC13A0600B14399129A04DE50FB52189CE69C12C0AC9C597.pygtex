@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{freq} \PYG{p}{=} \PYG{n+nb}{zeros}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{);}
+\PYG{n}{match\PYGZus{}num} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+
+\PYG{k}{for} \PYG{n+nb}{j} \PYG{p}{=} \PYG{l+m+mi}{25}\PYG{p}{:}\PYG{l+m+mi}{25}
+  \PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{10000}
+    \PYG{n}{match\PYGZus{}num} \PYG{p}{=} \PYG{n}{match}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{n+nb}{j}\PYG{p}{);}
+    \PYG{n}{freq}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{,} \PYG{n}{match\PYGZus{}num}\PYG{p}{)} \PYG{p}{=} \PYG{n}{freq}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{,} \PYG{n}{match\PYGZus{}num}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{n}{plot}\PYG{p}{(}\PYG{n}{freq}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,:));}
+\end{Verbatim}

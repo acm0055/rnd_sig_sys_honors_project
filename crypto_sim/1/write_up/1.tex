@@ -2,6 +2,7 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{minted}
 
 \author{Austin Chase Minor}
 \title{Cryptographic Applications of Random Variables}
@@ -51,5 +52,18 @@
       the mean and standard deviation along with seeing the general
       shape of the function. The Matlab code for this along with
       the corresponding graphs are below.
+
+      \begin{listing}[H]
+         \inputminted[linenos]{matlab}{../../crypto_sim.m}
+         \caption{CryptoSim Main}
+      \end{listing}
+      \begin{listing}[H]
+         \inputminted[linenos]{matlab}{../../match.m}
+         \caption{Match}
+      \end{listing}
+      \begin{listing}[H]
+         \inputminted[linenos]{matlab}{../../randomize_array.m}
+         \caption{Randomize Array}
+      \end{listing}
    \section{Analysis of Problem}
 \end{document}
