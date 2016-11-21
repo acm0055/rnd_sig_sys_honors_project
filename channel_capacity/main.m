@@ -1,18 +1,11 @@
-<<<<<<< HEAD
-PRECISION = 100;
-=======
 PRECISION = 1000;
->>>>>>> dist_write_up
 RETRY_COUNT = 100;
 
 %first avg transmission
 %second error rate of transmission
-<<<<<<< HEAD
 %third avg channel capacity
 A = zeros(3, 100);
-=======
 A = zeros(2, PRECISION);
->>>>>>> dist_write_up
 
 temp = 0;
 for i = 1:PRECISION
