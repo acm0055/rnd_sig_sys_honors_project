@@ -104,11 +104,44 @@
          \inputminted[linenos]{matlab}{../generate_random_msg.m}
          \caption{Generator of Random Messages with Packets}
       \end{listing}
-   \section{Results}
+   \section{Analysis}
       \includegraphics[width=\textwidth]{images/polyline288.png}
       Because the error correction was implemented using parity bits,
       the maximum channel capacity possible is $\frac{4}{5}$. This is since
       one new bit is added to each four bit transmission package thus lengthening
       the transmitted message at a $\frac{4}{5}$ rate.
-   \section{Analysis}
+
+      The average number of of bits needed follows a roughly linear pattern. This
+      is of course till around 30 when the number of errors invalidates the
+      scheme. It is of notice that around 25 the number of bits needed goes to
+      0. From analysising the second graph on number of errant messages, we
+      theorize that this tail end is due to the few times that message transmits
+      successfully. Since this rarely happens after 20 according to the second
+      graph, the tail end of the graph is less smooth and sporodic as the
+      random events are smoothed over less and less successful counts.
+
+      Since the goal of an error correction scheme is to reduce the number of
+      errors to essentially zero, the second graph reveals that after 1\% error
+      rate the number of errors is accountable and is thus too much. Before 1\%
+      the number of errors are not accountable and the message is transmitted
+      successfully.
+
+      Analysizing the first and third graph, shows the channel is relatively
+      ineffcient. Since the parity bit adds 1 bit of information for every 4 bits
+      in our case, the channel capacity is low because we do not need this much
+      information to detect and find errors. I.E. the max information at perfect
+      transmission is 80\%. The channel capacity after 16 is less than 50\%.
+      However, even before this as mentioned in the second graph, the encoding
+      schemes fails.
+   \section{Conclusion}
+      Parity bits are an easy to implement and fast method for detecting bits
+      in a byte packet. However, they are not very effecient as noted. Not only
+      that, they are not applicable in high noise environments since outside of
+      1\% errors the parity scheme starts to fail to transmit properly. However
+      in low noise enviroments such as CPU to RAM, parity bits are a good scheme
+      for quick, easly to implement error correction.
+      
+      Thanks should go to Pete Johnson, my teacher for Information Theory. Also
+      to https://en.wikipedia.org/wiki/Parity\_bit for a description of parity
+      bits and how they are calculated.
 \end{document}
