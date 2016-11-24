@@ -92,10 +92,67 @@
          \caption{Function to Parition Array using Average Scheme}
       \end{listing}
    \section{Analysis}
+   %http://tex.stackexchange.com/questions/32886/how-to-fit-a-large-figure-to-page
+   %for text height suggestion
+      \begin{figure}[H]
+         \includegraphics[width=\textheight/2]{images/cor_8.png}
+         \caption{Correlation of 8' signal}
+      \end{figure}
+      \begin{figure}[H]
+         \includegraphics[width=\textheight/2]{images/cor_9.png}
+         \caption{Correlation of 9'9" signal}
+      \end{figure}
+      \begin{figure}[H]
+         \includegraphics[width=\textheight/2]{images/spec_8.png}
+         \caption{Mean subtracted Spectogram of 8' signal}
+      \end{figure}
+      \begin{figure}[H]
+         \includegraphics[width=\textheight/2]{images/spec_9.png}
+         \caption{Mean subtracted Spectogram of 9'9" signal}
+      \end{figure}
       Picture above is the result of running the Matlab code.
       As noticeable their is an echo in the autocorrelation of both signals
-      at {x,y} for the {8', 9'9"} signal respectively. Computing the
+      at {620,762} for the {8', 9'9"} signal respectively. These
+      numbers were approximated from their respective graphs. Computing the
       distance as described earlier yields the following information:
-      \begin{table}
-      \end{table}
+
+      \begin{tabular}{|c|c|c|}
+         \hline
+         Signal & Approximately Max Correlation & Theoretical Distance \\
+         \hline
+         8' & 620 (tau) & 7.93'\\
+         9'9" & 762 (tau) & 9.74' = 9'8.9"\\
+         \hline
+      \end{tabular}
+
+      Thus compared to the orginal distances, the calculated distance differed
+      only by less than 1\% for both signals, using the midpoint method. Thus
+      the method by which we measured the distance to the wall is an accurate
+      method for the setup we had. It is noticeable that their is some blips
+      in both signals except they are not the size of the main blip. Also, we
+      assumed the distance of the signal to consider. This is not unreasonable
+      since it may be assumed that you can guess two wide bounds to search
+      between. For example, a submarine may only want to know the objects within
+      100 meters of itself.
+
+      For the spectrogram the mean was subtracted from both and the signal
+      partitioned. This was to normalize and smooth the signal in the case
+      of the partition. In the case of the subtracted mean, this was to
+      determine if the signal was attentuated or accentuated. Examining the
+      graphs above shows that in both cases the bass and mid-bass (0 - 2.5 kHz)
+      was attentuated. The mids (2.5 - 9 kHz) was emphasized with a neutral zone
+      The only neutral zones are around the transition points except in the
+      mid zone and the low high-mids. This shows that the room was not
+      neutral in terms of frequency response.
+      around 5 kHz. The same procedure can be done for the high-mids and highs. 
+
+   \section{Conclusion}
+      Thus from the experiment we have determined that white noise is
+      potential signal to use for the use of distance measurement. This
+      signal lead to an accurate measurement within 1\% of error. Secondly,
+      we showed the overall room response was tanted. The only neutral tones
+      was in small areas of the frequency band. It was interesting that the
+      frequency response followed a cosine wave pattern. Overall, the use of
+      band-limited white noise was a success in two diverse areas of
+      signal analysis.
 \end{document}

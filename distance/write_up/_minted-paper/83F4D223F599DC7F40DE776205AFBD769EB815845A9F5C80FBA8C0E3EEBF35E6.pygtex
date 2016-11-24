@@ -1,0 +1,58 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZpc{}https://www.google.com/webhp?sourceid=chrome\PYGZhy{}instant\PYGZam{}ion=1\PYGZam{}espv=2\PYGZam{}ie}
+\PYG{c}{\PYGZpc{}=UTF\PYGZhy{}8\PYGZsh{}q=speed+of+sound+in+feet+per+second}
+\PYG{n}{SPEED\PYGZus{}OF\PYGZus{}SOUND} \PYG{p}{=} \PYG{l+m+mf}{1125.33}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}for matlab and not octave use audioread}
+\PYG{n}{audio\PYGZus{}8} \PYG{p}{=} \PYG{n}{wavread}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}8ft.wav\PYGZsq{}}\PYG{p}{);}
+\PYG{n}{audio\PYGZus{}9} \PYG{p}{=} \PYG{n}{wavread}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}xft\PYGZus{}session.wav\PYGZsq{}}\PYG{p}{);}
+\PYG{c}{\PYGZpc{}reduce to one channel}
+\PYG{n}{audio\PYGZus{}8} \PYG{p}{=} \PYG{n}{audio\PYGZus{}8}\PYG{p}{(:,} \PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{n}{audio\PYGZus{}9} \PYG{p}{=} \PYG{n}{audio\PYGZus{}9}\PYG{p}{(:,} \PYG{l+m+mi}{1}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{}correlation and positive lag positions}
+\PYG{p}{[}\PYG{n}{cor\PYGZus{}8}\PYG{p}{,}\PYG{n}{lags\PYGZus{}8}\PYG{p}{]} \PYG{p}{=} \PYG{n}{xcorr}\PYG{p}{(}\PYG{n}{audio\PYGZus{}8}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}biased\PYGZsq{}}\PYG{p}{);}
+\PYG{p}{[}\PYG{n}{cor\PYGZus{}9}\PYG{p}{,}\PYG{n}{lags\PYGZus{}9}\PYG{p}{]} \PYG{p}{=} \PYG{n}{xcorr}\PYG{p}{(}\PYG{n}{audio\PYGZus{}9}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}biased\PYGZsq{}}\PYG{p}{);}
+\PYG{n}{p\PYGZus{}lags\PYGZus{}8} \PYG{p}{=} \PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{lags\PYGZus{}8} \PYG{o}{\PYGZgt{}}\PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{n}{p\PYGZus{}lags\PYGZus{}9} \PYG{p}{=} \PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{lags\PYGZus{}9} \PYG{o}{\PYGZgt{}}\PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{}22kHz of frequency band}
+\PYG{c}{\PYGZpc{}chop upper part of spectrum}
+\PYG{c}{\PYGZpc{}since spectral density is an even function}
+\PYG{n}{spec\PYGZus{}8} \PYG{p}{=} \PYG{n}{fft}\PYG{p}{(}\PYG{n}{cor\PYGZus{}8}\PYG{p}{,} \PYG{l+m+mi}{44000}\PYG{p}{);}
+\PYG{n}{spec\PYGZus{}8} \PYG{p}{=} \PYG{n}{spec\PYGZus{}8}\PYG{p}{(}\PYG{l+m+mi}{22001}\PYG{p}{:}\PYG{l+m+mi}{44000}\PYG{p}{);}
+\PYG{n}{spec\PYGZus{}9} \PYG{p}{=} \PYG{n}{fft}\PYG{p}{(}\PYG{n}{cor\PYGZus{}9}\PYG{p}{,} \PYG{l+m+mi}{44000}\PYG{p}{);}
+\PYG{n}{spec\PYGZus{}9} \PYG{p}{=} \PYG{n}{spec\PYGZus{}9}\PYG{p}{(}\PYG{l+m+mi}{22001}\PYG{p}{:}\PYG{l+m+mi}{44000}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{}https://www.mathworks.com/matlabcentral/answers/}
+\PYG{c}{\PYGZpc{}92565\PYGZhy{}how\PYGZhy{}do\PYGZhy{}i\PYGZhy{}control\PYGZhy{}axis\PYGZhy{}tick\PYGZhy{}labels\PYGZhy{}limits\PYGZhy{}and\PYGZhy{}axes\PYGZhy{}tick\PYGZhy{}locations}
+\PYG{c}{\PYGZpc{}Thanks to matlab support team for on this article for}
+\PYG{c}{\PYGZpc{}suggesting how to fix the x axis tick labels}
+\PYG{n}{figure}
+\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{n}{cor\PYGZus{}8}\PYG{p}{(}\PYG{n}{p\PYGZus{}lags\PYGZus{}8}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{)))}
+\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}tau\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}autocorrelation\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{set}\PYG{p}{(}\PYG{n}{gca}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}XTick\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{50}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{)}
+
+\PYG{n}{figure}
+\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{n}{cor\PYGZus{}9}\PYG{p}{(}\PYG{n}{p\PYGZus{}lags\PYGZus{}9}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{)))}
+\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}tau\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}autocorrelation\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{set}\PYG{p}{(}\PYG{n}{gca}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}XTick\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{50}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{)}
+
+\PYG{c}{\PYGZpc{}after checking the Matlab documentation and examples}
+\PYG{c}{\PYGZpc{}not sure if the magnitude is off, however that}
+\PYG{c}{\PYGZpc{}will not affect the interpretation of the room response}
+\PYG{c}{\PYGZpc{}since it is off only by a constant scale factor across all values}
+\PYG{c}{\PYGZpc{}and thus the shape of the graph will be the same}
+
+\PYG{n}{figure}
+\PYG{n}{bar}\PYG{p}{(.}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mf}{22.000}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{:}\PYG{l+m+mf}{22.000}\PYG{p}{,} \PYG{n}{partition}\PYG{p}{(}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{spec\PYGZus{}8}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{mean}\PYG{p}{(}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{spec\PYGZus{}8}\PYG{p}{)),}\PYG{l+m+mi}{100}\PYG{p}{))}
+\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}kHz\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}Spectral Density\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{figure}
+\PYG{n}{bar}\PYG{p}{(.}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mf}{22.000}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{:}\PYG{l+m+mf}{22.000}\PYG{p}{,} \PYG{n}{partition}\PYG{p}{(}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{spec\PYGZus{}9}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{mean}\PYG{p}{(}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{spec\PYGZus{}9}\PYG{p}{)),}\PYG{l+m+mi}{100}\PYG{p}{))}
+\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}kHz\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}Spectral Density\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}
