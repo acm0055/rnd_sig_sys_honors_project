@@ -14,21 +14,26 @@
    \section{Introduction}
       Claude Shannon was a major figure in creating the
       mathematical discipline of information theory. This
-      paper analyizes how emperical results line up with
+      paper analyzes how empirical results line up with
       the statements made by this mathematical model of
-      information. More formally, we will be analyizing
+      information. More formally, we will be analyzing
       the effect of using parity bits for error correction
       and how well they are at approaching the formal limit
       on the conveyance of data.
+
+      We will start with a mathematical description of the
+      concepts related to the problem. From there, we will
+      give the problem statement. After running the test,
+      we will analyze the results and give our conclusion.
    \section{Mathematical Description}
-      The official description of converyable information
+      The official description of conveyable information
       is the mutual information between to system of events.
       Let $A$ be the source alphabet. Let $B$ be the reception
       alphabet. Let $Q$ be the transmission matrix (IE the
       probability of receiving $b_j \in B$ given a transmission
       of $a_i \in A$. Let these entries be represented as $q_{i,j}$
       respectively. For our example we will only consider the
-      simplier channel known as the binary symettric channel.
+      simpler channel known as the binary symmetric channel.
       Thus \[ Q =
       \begin{pmatrix}
          q_{0,0} & q_{0,1} \\
@@ -114,10 +119,10 @@
       The average number of of bits needed follows a roughly linear pattern. This
       is of course till around 30 when the number of errors invalidates the
       scheme. It is of notice that around 25 the number of bits needed goes to
-      0. From analysising the second graph on number of errant messages, we
+      0. From analysing the second graph on number of errant messages, we
       theorize that this tail end is due to the few times that message transmits
       successfully. Since this rarely happens after 20 according to the second
-      graph, the tail end of the graph is less smooth and sporodic as the
+      graph, the tail end of the graph is less smooth and sporadic as the
       random events are smoothed over less and less successful counts.
 
       Since the goal of an error correction scheme is to reduce the number of
@@ -126,8 +131,8 @@
       the number of errors are not accountable and the message is transmitted
       successfully.
 
-      Analysizing the first and third graph, shows the channel is relatively
-      ineffcient. Since the parity bit adds 1 bit of information for every 4 bits
+      Analyzing the first and third graph, shows the channel is relatively
+      inefficient. Since the parity bit adds 1 bit of information for every 4 bits
       in our case, the channel capacity is low because we do not need this much
       information to detect and find errors. I.E. the max information at perfect
       transmission is 80\%. The channel capacity after 16 is less than 50\%.
@@ -135,11 +140,11 @@
       schemes fails.
    \section{Conclusion}
       Parity bits are an easy to implement and fast method for detecting bits
-      in a byte packet. However, they are not very effecient as noted. Not only
+      in a byte packet. However, they are not very efficient as noted. Not only
       that, they are not applicable in high noise environments since outside of
       1\% errors the parity scheme starts to fail to transmit properly. However
-      in low noise enviroments such as CPU to RAM, parity bits are a good scheme
-      for quick, easly to implement error correction.
+      in low noise environments such as CPU to RAM, parity bits are a good scheme
+      for quick, easily to implement error correction.
       
       Thanks should go to Pete Johnson, my teacher for Information Theory. Also
       to https://en.wikipedia.org/wiki/Parity\_bit for a description of parity

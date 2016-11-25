@@ -13,27 +13,32 @@
 \date{\today}
 
 \begin{document}
+   \maketitle
    \section{Introduction}
       In this paper, we will test the use of
       white noise for distance measurement and
       room response. This is a practical application
       of discrete autocorrelation and the FFT
-      (Fast Fourier Transform).
+      (Fast Fourier Transform). We will start by
+      giving a mathematical description of the concepts related
+      to the problem. Next, we will give the problem statement.
+      From there, we will analyze the results and give our
+      conclusion.
    \section{Mathematical Description}
       We know that autocorrelation is a description of
       how correlated a signal is with it self in time.
       This is useful for detecting repetitive responses
       in signals whether by nature of the signal or noise,
-      such as echos. White noise, by definition, is a constant
+      such as echoes. White noise, by definition, is a constant
       power signal in the frequency domain. This implies that it
       is only correlated at the origin. We will be using a band-limited
       white noise to approximate this signal.
 
-      We know that the spectral density is the Fourier Transform of the
+      We know that the spectral density is the Fourier Transform of
       the autocorrelation. Since we will be working with a signal in the
       discrete domain, we will use the FFT. This is an fast running
       algorithm to compute the discrete time Fourier Transform. We will
-      be able to see what frequencies the room attentuates or accentuates
+      be able to see what frequencies the room attenuates or accentuates (cuts or boosts)
       by observing the frequency response since white noise has an
       even power across the spectral density.
 
@@ -62,15 +67,15 @@
       microphone has a hyper-cardioid pickup pattern. This means it will
       pickup noise in the front and back but not sides. Thus we will be
       able to pickup the original white noise and the echo off the back
-      wall only. This is of course only an approximatation since the microphone
-      merely attentuates signals from other directions. However, the
-      attentuatation is large enough to approximate it as described.
+      wall only. This is of course only an approximation since the microphone
+      merely attenuates signals from other directions. However, the
+      attenuation is large enough to approximate it as described.
 
       For the measurement of distance to the wall, we set the microphone
       an x-amount of distance from the back wall. For both of the trials this
       was 8' and 9'9" respectively. Then using a band-limited white noise
       signal, generated using the audio program Audacity, we recorded audio
-      from the speaker and the relection off the back wall. Then using Matlab
+      from the speaker and the reflection off the back wall. Then using Matlab
       we calculated the autocorrelation. Only the first 1000 entries of the
       autocorrelation were considered in code. This is so you can see the
       echo on the autocorrelation.
@@ -80,7 +85,7 @@
       and is included in the code below.
 
       For both measuring the autocorrelation and spectral density a
-      utility program was written to compute the parition of a vector
+      utility program was written to compute the partition of a vector
       into a smaller vector using an average for the partition.
 
       \begin{listing}[H]
@@ -125,7 +130,7 @@
          \hline
       \end{tabular}
 
-      Thus compared to the orginal distances, the calculated distance differed
+      Thus compared to the original distances, the calculated distance differed
       only by less than 1\% for both signals, using the midpoint method. Thus
       the method by which we measured the distance to the wall is an accurate
       method for the setup we had. It is noticeable that their is some blips
@@ -138,9 +143,9 @@
       For the spectrogram the mean was subtracted from both and the signal
       partitioned. This was to normalize and smooth the signal in the case
       of the partition. In the case of the subtracted mean, this was to
-      determine if the signal was attentuated or accentuated. Examining the
+      determine if the signal was attenuated or accentuated. Examining the
       graphs above shows that in both cases the bass and mid-bass (0 - 2.5 kHz)
-      was attentuated. The mids (2.5 - 9 kHz) was emphasized with a neutral zone
+      was attenuated. The mids (2.5 - 9 kHz) was emphasized with a neutral zone
       The only neutral zones are around the transition points except in the
       mid zone and the low high-mids. This shows that the room was not
       neutral in terms of frequency response.
@@ -150,7 +155,7 @@
       Thus from the experiment we have determined that white noise is
       potential signal to use for the use of distance measurement. This
       signal lead to an accurate measurement within 1\% of error. Secondly,
-      we showed the overall room response was tanted. The only neutral tones
+      we showed the overall room response was tainted. The only neutral tones
       was in small areas of the frequency band. It was interesting that the
       frequency response followed a cosine wave pattern. Overall, the use of
       band-limited white noise was a success in two diverse areas of

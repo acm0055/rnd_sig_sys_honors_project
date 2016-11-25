@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{minted}
+\usepackage{graphicx}
 
 \author{Austin Chase Minor}
 \title{Cryptographic Applications of Random Variables}
@@ -12,7 +13,7 @@
    \maketitle
 
    \section{Introduction}
-   You are a budding cryptoanalyist and have noticed a security
+   You are a budding cryptanalyst and have noticed a security
    flaw in your companies login system. You find that matching
    certain keys to values gives you access to peoples account.
    You have no way of determining which key/value pairs match.
@@ -24,7 +25,10 @@
    the probability increases for a match. So remembering the theory
    of random variables, you code the problem statement and simulate
    to find the average number of matches for a given retry count.
-   Below is the mathematical statement of the problem.
+
+   We will start with the mathematical description of the problem.
+   From there, we will give the problem statement. After running the
+   test, we will analyze the problem and give a conclusion.
 
    \section{Mathematical Description}
    \begin{flushleft}
@@ -66,4 +70,41 @@
          \caption{Randomize Array}
       \end{listing}
    \section{Analysis of Problem}
+      \begin{figure}[H]
+         \includegraphics[width=\textheight/2]{images/3d_matches.png}
+         \caption{3D Image of the match frequences and numbers}
+      \end{figure}
+      \begin{figure}[H]
+         \includegraphics[width=\textheight/2]{images/mean.png}
+         \caption{Average mathches over k}
+      \end{figure}
+      \begin{figure}[H]
+         \includegraphics[width=\textheight/2]{images/dev_var.png}
+         \caption{Standard Deviation and Variance over k}
+      \end{figure}
+
+      It is logical to assume that at a certain point k their would
+      be a tipping point. I.E. their would be a point where the number
+      of matches being found would reduce the number left to find in a
+      vicious cycle resulting in complete matches at a lower number.
+      However, Figure 2 shows that this indeed is not
+      what happens. Instead the graph increases linearly then levels
+      off. This is surprising and means that in theory this problem
+      is not as insecure as it may seem at first glance. Other
+      than that, the mean is not very interesting. It shows that the
+      number of matches to k is between (1:1 and 2:1).
+
+      Overall, the matches you receive are fairly consistent. This is
+      shown by the standard deviation in Figure 3. At max, the standard
+      deviation is 5-6. This occurs around 38. We theorize that this is
+      due to the leveling off of the graph in Figure 2 for high k. The low
+      k, we theorize, is due to the lack of matches contributing to more matches,
+      this phenomenon being described above. Thus, an attacker would be
+      able to consistently break the system at the rate given by Figure 2 (the mean).
+   \section{Conclusion}
+      We discovered that this problem is far from being as cryptographically
+      insecure as at first glance. The growth rate does not hit a tipping
+      point. Rather, it actually levels off instead. However, this merely
+      moves it down from high security problem to a medium security problem
+      because the growth rate is still too close to (2:1).
 \end{document}

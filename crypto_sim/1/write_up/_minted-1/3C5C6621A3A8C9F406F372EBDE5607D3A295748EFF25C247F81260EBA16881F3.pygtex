@@ -1,0 +1,40 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{PRECISION} \PYG{p}{=} \PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{n}{RETRY\PYGZus{}COUNT} \PYG{p}{=} \PYG{l+m+mi}{10000}\PYG{p}{;}
+
+\PYG{n}{freq} \PYG{p}{=} \PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n}{PRECISION}\PYG{p}{,} \PYG{n}{PRECISION}\PYG{p}{);}
+\PYG{n}{match\PYGZus{}num} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}Graph for each k as }
+\PYG{k}{for} \PYG{n+nb}{j} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{PRECISION}
+  \PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{RETRY\PYGZus{}COUNT}
+    \PYG{n}{match\PYGZus{}num} \PYG{p}{=} \PYG{n}{match}\PYG{p}{(}\PYG{n}{PRECISION}\PYG{p}{,}\PYG{n+nb}{j}\PYG{p}{);}
+    \PYG{n}{freq}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{,} \PYG{n}{match\PYGZus{}num}\PYG{p}{)} \PYG{p}{=} \PYG{n}{freq}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{,} \PYG{n}{match\PYGZus{}num}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{}variation and standard deviation}
+\PYG{c}{\PYGZpc{}removes nonzero values of freq for stddev and var}
+\PYG{n}{temp} \PYG{p}{=} \PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n}{PRECISION}\PYG{p}{,} \PYG{n}{RETRY\PYGZus{}COUNT}\PYG{p}{);}
+\PYG{k}{for} \PYG{n+nb}{i} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{PRECISION}
+  \PYG{k}{for} \PYG{n+nb}{j} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{PRECISION}
+    \PYG{k}{if} \PYG{n}{freq}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{n+nb}{j}\PYG{p}{)} !\PYG{p}{=} \PYG{l+m+mi}{0}
+      \PYG{c}{\PYGZpc{}t is [prev array, array of size number of matches with vals of match number]}
+      \PYG{n}{t} \PYG{p}{=} \PYG{p}{[}\PYG{n}{temp}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{n}{temp}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,:)} !\PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n+nb}{ones}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{freq}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{n+nb}{j}\PYG{p}{))}\PYG{o}{*}\PYG{n+nb}{j}\PYG{p}{];}
+      \PYG{c}{\PYGZpc{}pads array with zeros to help with previous assignment}
+      \PYG{n}{temp}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,:)} \PYG{p}{=} \PYG{n}{padarray}\PYG{p}{(}\PYG{n}{t}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{p}{(}\PYG{n}{RETRY\PYGZus{}COUNT} \PYG{o}{\PYGZhy{}} \PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{t}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{))],} \PYG{l+s}{\PYGZsq{}post\PYGZsq{}}\PYG{p}{);}
+    \PYG{k}{end}
+  \PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{n}{variance} \PYG{p}{=} \PYG{n}{var}\PYG{p}{(}\PYG{n}{temp}\PYG{o}{\PYGZsq{}}\PYG{p}{);}
+\PYG{n}{std\PYGZus{}deviation} \PYG{p}{=} \PYG{n}{std}\PYG{p}{(}\PYG{n}{temp}\PYG{o}{\PYGZsq{}}\PYG{p}{);}
+\PYG{n}{mean\PYGZus{}val} \PYG{p}{=} \PYG{n}{mean}\PYG{p}{(}\PYG{n}{temp}\PYG{o}{\PYGZsq{}}\PYG{p}{);}
+
+\PYG{n}{figure}
+\PYG{n}{surf}\PYG{p}{(}\PYG{n}{freq}\PYG{p}{);}
+\PYG{n}{figure}
+\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{PRECISION}\PYG{p}{,} \PYG{n}{variance}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{PRECISION}\PYG{p}{,} \PYG{n}{std\PYGZus{}deviation}\PYG{p}{);}
+\PYG{n}{figure}
+\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{PRECISION}\PYG{p}{,} \PYG{n}{mean\PYGZus{}val}\PYG{p}{);}
+\end{Verbatim}
