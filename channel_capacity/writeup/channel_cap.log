@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.11.9)  24 NOV 2016 22:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.11.9)  25 NOV 2016 16:39
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -345,12 +345,17 @@ e
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 (./_minted-channel_cap/default-pyg-prefix.pygstyle)
 (./_minted-channel_cap/default.pygstyle)
-(./_minted-channel_cap/4634AF75038CDE92167425C1C9A52CFE5FF7798E08BE22032DD3ABB5
+runsystem(pygmentize -l matlab -f latex -P commandprefix=PYG -F tokenmerge -o _
+minted-channel_cap/4C3C5E1D7C853B0F1A604C8702CA64545FF7798E08BE22032DD3ABB53263
+8549.pygtex ../main.m)...executed.
+
+
+(./_minted-channel_cap/4C3C5E1D7C853B0F1A604C8702CA64545FF7798E08BE22032DD3ABB5
 32638549.pygtex
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 12.
 ) [2]
-Overfull \vbox (75.22223pt too high) has occurred while \output is active []
+Overfull \vbox (147.22223pt too high) has occurred while \output is active []
 
 
 [3]
@@ -367,15 +372,26 @@ E640D81E.pygtex) <images/polyline288.png, id=30, 401.95671pt x 315.41338pt>
 File: images/polyline288.png Graphic file (type png)
 
 <use images/polyline288.png>
-Package pdftex.def Info: images/polyline288.png used on input line 113.
+Package pdftex.def Info: images/polyline288.png used on input line 136.
 (pdftex.def)             Requested size: 345.0pt x 270.73042pt.
- [6] [7 <./images/polyline288.png>] [8]
+
+<images/log.png, id=32, 390.04118pt x 307.00296pt>
+File: images/log.png Graphic file (type png)
+ <use images/log.png>
+Package pdftex.def Info: images/log.png used on input line 140.
+(pdftex.def)             Requested size: 345.0pt x 271.55472pt.
+
+[6] [7 <./images/polyline288.png>] [8 <./images/log.png>]
+runsystem(rm _minted-channel_cap/4634AF75038CDE92167425C1C9A52CFE5FF7798E08BE22
+032DD3ABB532638549.pygtex)...executed.
+
+ [9]
 (./channel_cap.aux) ) 
 Here is how much of TeX's memory you used:
- 5469 strings out of 493013
- 91659 string characters out of 6135682
- 203799 words of memory out of 5000000
- 8906 multiletter control sequences out of 15000+600000
+ 5477 strings out of 493013
+ 91833 string characters out of 6135682
+ 208275 words of memory out of 5000000
+ 8913 multiletter control sequences out of 15000+600000
  8744 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,7n,35p,846b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -391,10 +407,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist
 ype1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb>
-Output written on channel_cap.pdf (8 pages, 950770 bytes).
+Output written on channel_cap.pdf (9 pages, 1266702 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 87 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -48,3 +48,9 @@ c = subplot(3,1,3);
 plot(A(3,:))
 ylabel(c,'Channel Capacity')
 xlabel(c,'Error Chance (1-Success Percentage)')
+%plot theoretical channel capacity for BSC
+figure
+plot(1:PRECISION,(1/PRECISION:1/PRECISION:1).*log2(2*(1/PRECISION:1/PRECISION:1)) ...
+  + (1-(1/PRECISION:1/PRECISION:1)).*log2(2*(1-(1/PRECISION:1/PRECISION:1))))
+ylabel('Channel Capacity')
+xlabel('Error Chance (1-Success Percentage)')

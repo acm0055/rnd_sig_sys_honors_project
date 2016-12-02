@@ -32,14 +32,15 @@
       such as echoes. White noise, by definition, is a constant
       power signal in the frequency domain. This implies that it
       is only correlated at the origin. We will be using a band-limited
-      white noise to approximate this signal.
+      white noise to approximate white noise.
 
       We know that the spectral density is the Fourier Transform of
       the autocorrelation. Since we will be working with a signal in the
       discrete domain, we will use the FFT. This is an fast running
-      algorithm to compute the discrete time Fourier Transform. We will
-      be able to see what frequencies the room attenuates or accentuates (cuts or boosts)
-      by observing the frequency response since white noise has an
+      algorithm to compute the discrete Fourier Transform. From this, we will
+      be able to see what frequencies 
+      the room attenuates or accentuates (cuts or boosts)
+      by observing the frequency response since white noise has
       even power across the spectral density.
 
       The recorded audio is in 16-bit wav format, sampled at 44 kHz.
@@ -61,9 +62,11 @@
       The basic setup is as pictured above. We will be using a speaker to
       broadcast the white noise, a microphone to pick up the transmitted signal,
       and a wall to measure the distance from. Furthermore, the speaker is
-      a reference monitor which implies that the white noise that it has
-      a flat frequency response. This is the same with the microphone.
-      As in the diagram above, the microphone is facing the back wall. The
+      a reference monitor which implies that the white noise that it broadcasts
+      will have an approximate flat frequency
+      response. This is the same with the microphone.
+      As in the diagram above, the microphone is facing the back wall
+      and is roughly the same height as the speaker cone in the speaker. The
       microphone has a hyper-cardioid pickup pattern. This means it will
       pickup noise in the front and back but not sides. Thus we will be
       able to pickup the original white noise and the echo off the back
@@ -77,16 +80,17 @@
       signal, generated using the audio program Audacity, we recorded audio
       from the speaker and the reflection off the back wall. Then using Matlab
       we calculated the autocorrelation. Only the first 1000 entries of the
-      autocorrelation were considered in code. This is so you can see the
+      autocorrelation were considered in our code. This is so you can see the
       echo on the autocorrelation.
       The code for this is below.
 
       The spectral density measurement involved the same setup as above
-      and is included in the code below.
+      and is included in the code below. The spectral density calculation
+      is carried out as described above.
 
-      For both measuring the autocorrelation and spectral density a
+      For measuring the spectral density a
       utility program was written to compute the partition of a vector
-      into a smaller vector using an average for the partition.
+      into a smaller vector using an average for each partition.
 
       \begin{listing}[H]
          \inputminted[linenos]{matlab}{../main.m}
@@ -115,7 +119,7 @@
          \includegraphics[width=\textheight/2]{images/spec_9.png}
          \caption{Mean subtracted Spectogram of 9'9" signal}
       \end{figure}
-      Picture above is the result of running the Matlab code.
+      Pictured above is the result of running the Matlab code.
       As noticeable their is an echo in the autocorrelation of both signals
       at {620,762} for the {8', 9'9"} signal respectively. These
       numbers were approximated from their respective graphs. Computing the
@@ -134,30 +138,34 @@
       only by less than 1\% for both signals, using the midpoint method. Thus
       the method by which we measured the distance to the wall is an accurate
       method for the setup we had. It is noticeable that their is some blips
-      in both signals except they are not the size of the main blip. Also, we
+      in both signals; however, they are not the size of the main blip. Also, we
       assumed the distance of the signal to consider. This is not unreasonable
       since it may be assumed that you can guess two wide bounds to search
       between. For example, a submarine may only want to know the objects within
       100 meters of itself.
 
-      For the spectrogram the mean was subtracted from both and the signal
-      partitioned. This was to normalize and smooth the signal in the case
-      of the partition. In the case of the subtracted mean, this was to
-      determine if the signal was attenuated or accentuated. Examining the
+      For the spectrograms the mean was subtracted from both and the signal
+      partitioned. This was to normalize and smooth the signal.
+      The mean was subtracted to
+      determine if the frequencies were attenuated or accentuated. Examining the
       graphs above shows that in both cases the bass and mid-bass (0 - 2.5 kHz)
-      was attenuated. The mids (2.5 - 9 kHz) was emphasized with a neutral zone
+      was attenuated. The mids (2.5 - 9 kHz) was accentuated with a neutral zone
       The only neutral zones are around the transition points except in the
       mid zone and the low high-mids. This shows that the room was not
       neutral in terms of frequency response.
       around 5 kHz. The same procedure can be done for the high-mids and highs. 
+      It may be noted, as noted in the code, that the exact amplitude of the
+      spectrogram may not be accurate; however, for the measurement of the
+      'flatness' of a room this obviously is not as important.
 
    \section{Conclusion}
-      Thus from the experiment we have determined that white noise is
+      Thus from the experiment we have determined that white noise is a
       potential signal to use for the use of distance measurement. This
-      signal lead to an accurate measurement within 1\% of error. Secondly,
+      signal lead to an accurate distance
+      measurement to within a 1\% of error. Secondly,
       we showed the overall room response was tainted. The only neutral tones
       was in small areas of the frequency band. It was interesting that the
       frequency response followed a cosine wave pattern. Overall, the use of
-      band-limited white noise was a success in two diverse areas of
-      signal analysis.
+      band-limited white noise was a success in two diverse, but
+      related, areas of signal analysis.
 \end{document}
